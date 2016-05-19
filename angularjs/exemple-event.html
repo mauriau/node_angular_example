@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+    <div id="red" style="background-color:red;width:150px;height:150px">
+        <div id="blue" style="background-color:blue;width:100px;height:100px">
+            <div id="yellow" style="background-color:yellow;width:50px;height:50px">
+                <input id="btn" type="button" value="ok">
+            </div>     
+        </div>     
+    </div>  
+    <script>
+
+    red.addEventListener("click", onRedClick, true);
+    blue.addEventListener("click", onBlueClick, true);
+    yellow.addEventListener("click", onYellowClick, true);
+    btn.addEventListener("click", onBtnClick, true);
+
+    red.addEventListener("click", onRedClick);
+    blue.addEventListener("click", onBlueClick);
+    yellow.addEventListener("click", onYellowClick);
+    btn.addEventListener("click", onBtnClick);
+        
+    function onRedClick(event)
+    {
+        //if (event.target == red)
+            console.log("red");
+    }
+        
+    function onBlueClick(event)
+    {
+        //if (event.target == blue)
+            console.log("blue");
+    }
+        
+    function onYellowClick(event)
+    {
+        //event.stopPropagation();
+        event.preventDefault();
+        
+        //if (event.target == yellow)
+            console.log("yellow");
+    }
+        
+    function onBtnClick(event)
+    {
+        //if (event.target == btn)
+            console.log("btn");
+    }
+    </script>
+    </body>
+</html>

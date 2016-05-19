@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="angular.js"></script>
+        <style>
+            div
+            {
+                display:inline-block;
+                padding:10px;
+                border:solid 1px;
+            }
+        </style>
+    </head>
+    <body ng-app="MyApp">
+       
+    <div ng-controller="Ctrl1" ng-show="isvisible()">
+        Counter : {{counter}}
+        <input type="button" value="emit" ng-click="$emit('incr')">
+        <input type="button" value="broadcast" ng-click="$broadcast('incr')">
+    </div>
+     
+    <script>
+       
+        var app = angular.module("MyApp", []);
+
+        app.controller("Ctrl1", function($rootScope, $scope){
+
+            $scope.counter = 0;
+            
+           $scope.isvisible = function(){ return $scope.counter < 5 ;}
+            
+            $scope.$on('incr', function(){
+                $scope.counter++;
+                
+                
+            });
+            
+        });
+       
+
+    </script>
+        
+    </body>
+</html>

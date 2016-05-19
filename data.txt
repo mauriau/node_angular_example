@@ -1,0 +1,10 @@
+alpha
+beta
+gamme
+phi
+loopa
+rho
+epsilon
+teta
+lembda
+

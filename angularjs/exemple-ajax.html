@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body> 
+        
+        
+        <div id="myDiv"></div>
+    <script>
+       
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function()
+        {
+            if (xhr.readyState == 4)
+            {
+                if (xhr.status == 200)
+                {
+                    var data = xhr.responseText;
+                    console.log( data[0] );
+                }
+                else
+                {
+                    console.log("error", xhr.status);
+                }
+            }
+            
+        };
+        
+        xhr.open("GET", "http://localhost:8000/data.json", true);
+        xhr.send();
+        
+        
+        
+    </script>
+    </body>
+</html>
+
+
+
+
+

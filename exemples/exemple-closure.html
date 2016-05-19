@@ -1,0 +1,33 @@
+<html>
+    
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-closure.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+<head>
+        <title>Exemple</title>
+    </head>
+    <body>
+        <script>
+           
+           function create()
+            {
+                var counter = 12;
+                
+                return {
+                    print : function(){ console.log(counter);},
+                    incr : function(){ counter++;},
+                    decr : function(){ counter--;}
+                }
+           }
+            
+            var a = create();
+            a.incr();
+            a.incr();
+            a.incr();
+            a.print();
+            a.decr();
+            a.print();
+            
+        </script>
+    </body>
+
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-closure.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+</html>

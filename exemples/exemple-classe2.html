@@ -1,0 +1,39 @@
+<html>
+    
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-classe2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+<head>
+        <title>Exemple</title>
+    </head>
+    <body>
+        <script>
+            //window.name = "coucou";
+            
+            function User(_name, age)
+            {
+                this.name = _name;
+                this.age = age;
+                
+                this.bonjour =function ()
+                {
+                    console.log("Bonjour, je suis " + this.name);
+                };
+            }
+            
+            var u = new User("James", 14);
+            var u2 = new User("Wendy", 15);
+            
+            
+            u.bonjour = function()
+            {
+                console.log("Hola me llamo " + this.name);
+            };
+            
+           u.bonjour();
+            u2.bonjour();
+            
+            
+        </script>
+    </body>
+
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-classe2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+</html>

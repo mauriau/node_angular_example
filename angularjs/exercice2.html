@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="angular.js"></script>
+        <style>
+            table td
+            {
+                border:solid 1px;
+                padding:10px;
+            }
+            
+        </style>
+    </head>
+    <body ng-app="MyApp">
+       
+    <div ng-controller="Ctrl1">
+        
+        <div ng-show="editUser" style="border:solid 1px;padding:10px;float:right">
+Nom : <input type="text" ng-model="editUser.name"><br>
+Age : <input type="text" ng-model="editUser.age"><br>
+            <input type="button" value="Sauver" ng-click="onSave()">
+        </div>
+        
+        <table>
+            <tr>
+                <td>Nom</td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>{{user.name}}</td>
+                <td>
+                    <input type="button" value="X" ng-click="onRemove(user.id)">
+                    <input type="button" value="Edit" ng-click="onEdit(user)">
+                </td>
+            </tr>
+        </table>
+        
+        
+       
+    </div>
+     
+    <script>
+       
+        var app = angular.module("MyApp", []);
+
+        app.controller("Ctrl1", function($scope, $http){
+            $http.get("http://localhost:8000/names?count=10").success(onResult);
+             
+            
+            function onResult(data)
+            {
+                $scope.users = data;
+            }
+            
+            $scope.onSave = function()
+            {
+                for (var i = 0; i < $scope.users.length; i++)
+                {
+                    if ($scope.users[i].id == $scope.editUser.id)
+                    {
+                        $scope.users[i] = $scope.editUser;
+                    }
+                }
+                
+                
+                $scope.editUser = undefined;
+            };
+            
+            $scope.onEdit = function(user)
+            {
+                $scope.editUser = angular.copy(user);    
+            };
+            
+            $scope.onRemove = function(userid)
+            {
+                for (var i = 0; i < $scope.users.length; i++)
+                {
+                    if ($scope.users[i].id == userid)
+                    {
+                        $scope.users.splice(i, 1);
+                    }
+                }
+                
+                $http.delete("/names/" + userid);
+            };
+        });
+        
+       
+        
+        // contruire une grille avec la liste des utilisateurs dans la table student
+        // la grille doit contenir 2 colonnes
+        // - une colonne pour le nom
+        // - une colonne avec un bouton supprimer
+        
+        // lorsque l'utilisateur clique sur le bouton supprimer
+        // supprimer l'utilisateur de l'affichage
+        // supprimer l'utilisateur de la base de donnée (requete DELETE /names/id)
+        
+        
+        // RECUPERER : exercice2.html et serveur-student.html
+        
+       
+
+    </script>
+        
+    </body>
+</html>
+
+
+
+

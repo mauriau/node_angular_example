@@ -1,0 +1,28 @@
+<html>
+    
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-heritage.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+<head>
+        <title>Exemple</title>
+    </head>
+    <body>
+        <script>
+            
+            var arr = [12, 14, 15];// Array
+            
+            Array.prototype.somme = function()
+            {
+               var _total = 0;
+                
+                for (var i = 0; i < this.length; i++)
+                    _total += this[i];
+                
+                return _total;
+            };
+            
+            console.log( arr.somme() );
+            
+        </script>
+    </body>
+
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-heritage.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+</html>

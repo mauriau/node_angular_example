@@ -1,0 +1,30 @@
+<html>
+    
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-array.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+<head>
+        <title>Exemple</title>
+    </head>
+    <body>
+        <script>
+            // un tableau est un object
+            // un object est une sorte de tableau
+            
+            /*var obj = new Object();
+            obj.name = "James";
+            obj.age = 14;*/
+            
+            var obj = {name:"James", age:14};
+            obj.name = "Joe";
+            obj["name"] = "Joe";
+            
+            var arr = [12, 13, 15];
+            arr["1"] = 18;
+            arr.coucou = 18;
+            
+            console.log( arr.length );
+            
+        </script>
+    </body>
+
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-array.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+</html>

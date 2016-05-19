@@ -1,0 +1,54 @@
+<html>
+    
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-proxy.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+<head>
+        <title>Exemple</title>
+    </head>
+    <body>
+        <script>
+            
+            
+            Array.prototype.somme = function()
+            {
+               var _total = 0;
+                
+                for (var i = 0; i < this.length; i++)
+                    _total += this[i];
+                
+                return _total;
+            };
+            
+            // ------------------------ //
+            
+            var arr = [12, 14, 15];// Array
+            var arr2 = [32, 45, 76];// Array
+            var arr3 = [87, 43, 56];// Array
+            
+            var a = function()
+            {
+                    console.log("coucou");
+            };
+            
+            // proxy
+            (function(){
+                var proxied = Array.prototype.somme;
+                Array.prototype.somme = function()
+                {
+                    var result = proxied.apply(this); 
+                    
+                    return result * 0.9;
+                };
+            })();
+            
+           
+            console.log( arr.somme() );
+            console.log( arr2.somme() );
+            console.log( arr3.somme() );
+            
+            a();
+            
+        </script>
+    </body>
+
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-proxy.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+</html>

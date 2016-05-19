@@ -1,0 +1,53 @@
+<html>
+    
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-constantes.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+<head>
+        <title>Exemple</title>
+    </head>
+    <body>
+        <script>
+            // undefined, NaN, Infinity, null
+            
+            /*var a;
+            console.log( typeof a); // undefined
+            if (a == undefined)// est comparable
+                console.log( "a defined" );*/
+            
+            /*var a;
+            a++;
+            console.log( typeof a); // number
+            
+            //if (a == NaN)
+            if (isNaN(a))            
+                console.log( a );*/
+            
+           /* var a = 1 / 0;
+            
+            a = a / Infinity;
+            
+            console.log( a );
+            
+            //if (a == Infinity)
+            //    console.log( "a est infini" );
+            */
+            
+            var i = 0;
+            while (i++ < 200000)
+            {
+                a = "coucou";
+                a = null;
+            }
+            
+            var a = null;
+            
+            console.log( typeof a );
+            
+            if (a == null)
+                console.log( "a est null");
+            
+            
+        </script>
+    </body>
+
+<!-- Mirrored from static.flexilivre.com/nodejs/exemples/exemple-constantes.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 18 May 2016 10:05:51 GMT -->
+</html>

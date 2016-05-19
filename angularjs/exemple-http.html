@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="angular.js"></script>
+    </head>
+    <body ng-app="MyApp">
+       
+    <div ng-controller="Ctrl1">
+       
+    </div>
+     
+    <script>
+       
+        var app = angular.module("MyApp", []);
+
+        app.controller("Ctrl1", function($scope, $http){
+               $http.get("/names/4").success(function(data){
+                  console.log( data ); 
+               });
+                  
+        });
+       
+
+    </script>
+        
+    </body>
+</html>

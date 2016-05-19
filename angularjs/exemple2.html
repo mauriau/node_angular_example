@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="angular.js"></script>
+        <style>
+            div
+            {
+                display:inline-block;
+                padding:10px;
+                border:solid 1px;
+            }
+        </style>
+    </head>
+    <body ng-app="MyApp">
+       
+    <div ng-controller="Ctrl1">
+        {{name}} - {{version}}
+    </div>
+        
+    <div ng-controller="Ctrl2">
+        {{name}} - {{version}}
+    </div>
+        
+
+    <script>
+
+       
+        var app = angular.module("MyApp", []);
+
+        app.controller("Ctrl1", function($rootScope, $scope){
+
+            $scope.name = "Ctrl1";
+            
+            $rootScope.version = "1.1";
+            
+        });
+        
+        app.controller("Ctrl2", function($rootScope, $scope){
+
+            $scope.name = "Ctrl2";
+            
+            $rootScope.version = "1.2";
+
+        });
+      
+
+    </script>
+        
+    </body>
+</html>

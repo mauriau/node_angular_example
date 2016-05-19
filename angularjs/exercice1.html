@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <script src="angular.js"></script>
+    </head>
+    <body ng-app="MyApp">
+      
+   
+        
+    <div ng-controller="Ctrl1">
+        <input type="text" ng-model="search">
+        Trier par :
+        <select ng-model="tri">
+            <option value="name">Nom</option>
+            <option value="age">Age</option>
+        </select>
+        <div>
+            
+            <utilisateur ng-repeat="user in users | filter:search | orderBy:tri"></utilisateur>
+            
+            
+        </div> 
+        
+        <input type="button" value="onload" ng-click="onLoadData()">
+     
+    </div>
+
+        
+       
+        
+    <script>
+
+       
+        var app = angular.module("MyApp", []);
+
+        app.controller("Ctrl1", function($scope){
+
+           $scope.onLoadData = function()
+            {
+                 $scope.users = [{name:"James", age:52, salaire:169000},
+                               {name:"Wendy", age:34, salaire:29000},
+                               {name:"John", age:23, salaire:22000},
+                               {name:"Fanny", age:45, salaire:120000},
+                               {name:"Chris", age:34, salaire:45000},
+                               {name:"Tom", age:24, salaire:50000}];
+            };
+            
+            /*$scope.onRemove = function(userName)
+            {
+                for (var i = 0; i < $scope.users.length; i++)
+                {
+                    if ($scope.users[i].name == userName)
+                    {
+                        $scope.users.splice(i, 1);
+                        break;
+                    }
+                }
+            };*/
+        
+
+        });
+        
+        
+     
+        
+        app.directive("utilisateur", function(){
+        
+           return {
+                restrict : 'E',
+                replace:true,
+                templateUrl : "user.html",
+                link : function(scope, element){
+                   
+                   element.find("input").on("click", function(){
+                       
+                       // envoyer un évenement    
+                       for (var i = 0; i < scope.$parent.users.length; i++)
+                        {
+                            if (scope.$parent.users[i].name == scope.user.name)
+                            {
+                                scope.$parent.users.splice(i, 1);
+                                // forcer angular à faire un digest
+                                break;
+                            }
+                        }
+                       
+                   });
+               }
+           };
+            
+        });
+
+        app.filter("salaire", function(){
+            return function(input){
+                
+                var milliers = Math.round(input / 1000);
+                
+                var str = "";
+                
+                if (milliers > 0)
+                    str += milliers + " ";
+                
+                var lereste = input - (milliers * 1000);
+                
+                lereste = lereste + "";
+                while (lereste.length < 3)
+                    lereste = "0" + lereste;
+                
+                str += lereste + " €";
+                
+                return str;
+            };
+        })
+
+    </script>
+        
+    </body>
+</html>

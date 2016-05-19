@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="angular.js"></script>
+        <script src="angular-route.js"></script> 
+    </head>
+    <body ng-app="MyApp">
+       
+    <a href="#/students">Students</a>
+        
+    <div ng-view></div>
+     
+    <script>
+       
+        var app = angular.module("MyApp", ["ngRoute"]);
+
+        app.controller("StudentController", function($scope, $http, $location){
+            
+            $http.get("http://localhost:8000/students?count=10").success(onResult);
+            
+            
+            function onResult(data) {
+                $scope.users = data;
+            }
+            
+            $scope.onProfil = function(user) {
+                $location.path("/students/" + user.id);
+            };
+            
+            $scope.onRemove = function(user)
+            {
+                //check si l'utilisateur existe
+                for (var i = 0; i < $scope.users.length; i++)
+                {
+                    if ($scope.users[i].id == user.id)
+                    {
+                        $scope.users.splice(i, 1);
+                        $http.delete("/students/" + user.id);
+                        break;
+                    }
+                }
+                
+            };
+            
+            $scope.onEdit = function(user) {
+                $scope.editUser = angular.copy(user);
+            };
+            
+            $scope.onSave = function()
+            {
+                for (var i = 0; i < $scope.users.length; i++)
+                {
+                    if ($scope.users[i].id == $scope.editUser.id)
+                    {
+                        $scope.users[i] = $scope.editUser;
+                    }
+                }
+                $scope.editUser = undefined;
+            }
+        });
+        
+        app.controller("StudentProfilController", function($rootScope, $scope, $routeParams, $location){
+            
+            var user;
+            for (var i = 0; i < $rootScope.users.length; i++)
+            {
+                if ($rootScope.users[i].id == $routeParams.id)
+                {
+                    user = $rootScope.users[i];
+                    break;
+                }
+            }
+            
+            if (user)
+            {
+                $scope.user = user;
+            }
+            else
+            {
+                $location.path("/students");
+            }
+            
+        });
+        
+        app.config( function($routeProvider){
+           
+            $routeProvider
+                .when("/students", {
+                    templateUrl : "student.html",
+                    controller : "StudentController"
+                })
+                .when("/students/:id", {
+                    templateUrl : "profil.html",
+                    controller : "StudentProfilController"
+                })
+                .otherwise( { redirectTo : "/students"});
+        });
+        
+       
+        // - récupérer les données depuis le serveur
+        // - coder la suppression : à l'affichage et dans la base de donnée
+        // - coder la modification : à l'affichage et dans la base de donnée
+        // (requete ajax PUT)
+        // - coder l'ajout : dans l'affichage et dans la BD
+        // utiliser le même controlleur
+        
+
+    </script>
+        
+    </body>
+</html>
+
+
+
+

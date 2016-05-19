@@ -1,0 +1,19 @@
+<h1>Student</h1>
+        <div ng-show="editUser" style="border:solid 1px;padding:10px;float:right">
+            Nom : <input type="text" ng-model="editUser.name"><br>
+            <input type="button" value="Sauver" ng-click="onSave()">
+        </div>
+<table>
+    <tr ng-repeat="user in users">
+        <td>
+            <div  style="background-color:black;color:white;display:inline-block;padding:10px;margin:10px;border-radius:10px;cursor:pointer"
+                  ng-click="onProfil(user)" >
+                {{user.name}}
+            </div>
+        </td>
+        <td>
+            <input type="button" value="X" ng-click="onRemove(user)">
+        </td>
+        <td><input type="button" value="Edit" ng-click="onEdit(user)"></td>
+    </tr>
+</table>

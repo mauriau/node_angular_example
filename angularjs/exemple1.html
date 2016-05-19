@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+        <script src="angular.js"></script>
+    </head>
+    <body ng-app="MyApp">
+       
+    <coucou></coucou>
+        
+    <div ng-controller="Ctrl1">
+        <input type="text" ng-model="search">
+        Trier par :
+        <select ng-model="tri">
+            <option value="name">Nom</option>
+            <option value="age">Age</option>
+        </select>
+        <div>
+            <ul>
+            <li ng-repeat="user in users | filter:search | orderBy:tri">{{ user.name }} - {{ user.age | age}}</li>
+            </ul>
+        </div> 
+     
+    </div>
+
+        
+        
+        
+    <script>
+
+        var app = angular.module("MyApp", []);
+
+        app.controller("Ctrl1", function($scope){
+
+            $scope.search = "James";
+            $scope.coucou = "YES";
+            $scope.users = [{name:"James", age:1},
+                           {name:"Wendy", age:11},
+                           {name:"John", age:13},
+                           {name:"Fanny", age:12},
+                           {name:"Chris", age:16},
+                           {name:"Tom", age:15}];
+
+        });
+        
+        app.directive("coucou", function(){
+           return {
+                restrict : 'E',
+                replace:true,
+                template : "<h1>Coucou</h1>"
+           };
+        });
+
+        app.filter("age", function(){
+            return function(input){
+                if (input > 1)
+                    return input + " ans";
+                else
+                    return input + " année";
+            };
+        })
+
+    </script>
+        
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Angular JS</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+    <textarea id="myarea"></textarea>
+    <script>
+        
+        myarea.addEventListener("keydown", onKeyDown);
+        
+        function onKeyDown(event)
+        {
+            if (event.keyCode == 83 && event.metaKey){
+                console.log("Meta + S");
+                event.preventDefault();
+                // CTRL + N
+                //
+            }    
+        }
+
+    </script>
+    </body>
+</html>
